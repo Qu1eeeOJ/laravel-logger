@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\App;
 use Qu1eeeOJ\LaravelLogger\Exceptions\StyleNotFoundException;
 use Qu1eeeOJ\LaravelLogger\Formatters\ConsoleMessageFormatter;
 use Qu1eeeOJ\LaravelLogger\Interfaces\FormatterWithStyleInterface;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 /**
@@ -49,6 +50,11 @@ class LoggerConsoleService
         // if the prefix is not null, then we put the prefix
         if (! is_null($this->prefix)) {
             $this->formatter->setPrefix($this->prefix);
+        }
+
+        // Register warning style
+        if (! $this->console->getFormatter()->hasStyle('warning')) {
+            $this->console->getFormatter()->setStyle('warning', new OutputFormatterStyle('yellow'));
         }
     }
 
