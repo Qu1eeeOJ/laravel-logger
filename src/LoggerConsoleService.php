@@ -29,7 +29,7 @@ class LoggerConsoleService
      private array $styles = [
         'info' => 'info',
         'error' => 'error',
-        'warning' => 'warn',
+        'warning' => 'warning',
         'debug' => 'info'
     ];
 

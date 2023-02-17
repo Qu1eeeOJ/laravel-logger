@@ -116,6 +116,66 @@ class LoggerService
     }
 
     /**
+     * Set prefix
+     *
+     * @param string|array $prefix
+     *
+     * @return LoggerService
+     */
+    public function setPrefix(string|array $prefix): LoggerService
+    {
+        // Set prefix for log
+        $this->formatter->setPrefix($prefix);
+
+        // Set prefix for console log
+        if ($this->withConsoleLogger()) {
+            $this->console->formatter->setPrefix($prefix);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add text to the beginning of the prefix
+     *
+     * @param string $text
+     *
+     * @return LoggerService
+     */
+    public function addTextToBeginningPrefix(string $text): LoggerService
+    {
+        // Add text to log
+        $this->formatter->addTextToBeginningPrefix($text);
+
+        // Add text to console log
+        if ($this->withConsoleLogger()) {
+            $this->console->formatter->addTextToBeginningPrefix($text);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add text to the end of the prefix
+     *
+     * @param string $text
+     *
+     * @return LoggerService
+     */
+    public function addTextToEndPrefix(string $text): LoggerService
+    {
+        // Add text to log
+        $this->formatter->addTextToEndPrefix($text);
+
+        // Add text to console log
+        if ($this->withConsoleLogger()) {
+            $this->console->formatter->addTextToEndPrefix($text);
+        }
+
+        return $this;
+    }
+
+    /**
      * Determine php cli mode
      *
      * @return bool
