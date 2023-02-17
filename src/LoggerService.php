@@ -79,7 +79,7 @@ class LoggerService
     public function __call(string $name, array $arguments): void
     {
         // Check method in available methods
-        if (! array_key_exists($name, $this->methods)) {
+        if (! in_array($name, $this->methods)) {
             throw new MethodNotFoundException(
                 sprintf(
                     'Method [%s] not found. Available methods: [%s]',
